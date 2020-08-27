@@ -12,8 +12,9 @@
         <div class="container">
             <nav class="navbar navbar-light bg-light">
                 <form class="form-inline">
-                    <button class="btn btn-primary" type="button">Корзина</button>
+                    <button class="btn btn-primary" onclick="showCart()" type="button">Корзина</button>
                 </form>
+                <div class="cart-price">Сумма товаров: 0</div>
             </nav>
             
         </div>
@@ -21,6 +22,8 @@
     <main>
         <div class="container">
             <div class="row justify-content-md-center"></div>
+            <h1 class='cart-title hidden'>Корзина</h1>
+            <div class="goods-list hidden"></div>
         </div>
     </main>
     <script src="./js/main.js"></script>
