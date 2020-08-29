@@ -41,25 +41,36 @@ class GoodsItem {
 class GoodsList {
     constructor() {
         this.goods = [];
+        this.filteredGoods = [];
     }
     fetchGoods() {
         return fetch(`${API_URL}/catalogData.json`)
             .then(result => result.json())
             .then(data => {
                 this.goods = [...data];
+                this.filteredGoods = [...data];
                 this.render();
             })
             .catch(error => {console.log(error)});
     }
+    
+    filterGoods(value) {
+        const regexp = new RegExp(value, 'i');
+        this.filteredGoods = this.goods.filter(good => regexp.test(good.product_name));
+        this.render();
+    }
+
+    
     render() {
         let listHtml = '';
-        this.goods.forEach(good => {
+        this.filteredGoods.forEach(good => {
             const goodItem = new GoodsItem(good.product_name, good.price, good.img, good.id_product);
             listHtml += goodItem.render();
         });
         document.querySelector('.row').innerHTML = listHtml;
     }
     
+
 }
 class Cart {
     constructor() {
@@ -138,6 +149,8 @@ class CartItem {
     }
 }
 
+let searchField = document.querySelector('.search-field');
+let searchButton = document.querySelector('.search-button');
 
 
 const list = new GoodsList();
@@ -151,7 +164,6 @@ function showCart() {
     let cart = document.querySelector('.goods-list');
     let cartTitle = document.querySelector('.cart-title');
     cart.classList.remove('hidden');
-    cartTitle.classList.remove('hidden');
     }
 
 const cart = new Cart();
@@ -162,3 +174,8 @@ function addToCart(id_product) {
 function deleteItem(id_product) {
     cart.deleteItem(id_product);
 }
+
+searchButton.addEventListener('click', (e) => {
+  const value = searchField.value;
+  list.filterGoods(value);
+});

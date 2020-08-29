@@ -1,0 +1,9 @@
+.ok input,
+.ok textarea {
+    border: #388E3C solid 1px;
+}
+.fail input,
+.fail textarea {
+    position: relative;
+    border: #d32f2f solid 1px;
+}
