@@ -1,0 +1,16 @@
+.card {
+    margin-top: 15px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.basket-item {
+    float: left;
+    padding: 5px;
+}
+
+.search-button {
+    
+}
