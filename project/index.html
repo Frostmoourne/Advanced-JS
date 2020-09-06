@@ -16,48 +16,20 @@
     <div id="app">
         <header>
             <div class="container">
-                <nav class="navbar navbar-light bg-light">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2 search-field" type="search" placeholder="Поиск" v-model="searchLine">
-                        <button class="btn btn-outline-success my-2 my-sm-0 search-button" @click='filterGoods()' type="button">Искать</button>
-                    </form>
-                    <button  type="button" class="btn btn-primary" v-on:click="isVisibleCart=!isVisibleCart"> Корзина </button>
-                    <div class="cart-price">Сумма товаров: {{ goodsPrice() }}</div>
-                </nav>
+                <search :visibility="showCart" :search-line="searchLine" @filter="filterGoods"></search>
             </div>
         </header>
         <main>
             <div class="container">
-               <div v-show="isVisibleCart" class="goods-list">
-                    <div v-if='basketGoods.length < 1'><h1>Нет данных</h1></div>
-                    <div v-else class="row justify-content-md-center">
-                        <div class="col-md-auto" v-for="good in basketGoods">
-                            <div class="basket-item">
-                                <img :src="imgCatalog" :alt="good.product_name">
-                                <div class="basket-info">
-                                    <h3>{{good.product_name}}</h3>
-                                    <p>{{good.price}}</p>
-                                </div>
-                                <button class='deleteItem' @click='deleteItem(good.id_product)'>&times;</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-md-center">
-                    <div class="col-md-auto" v-for="good in filteredGoods">
-                        <div class="card" style="width: 15rem;"> <img :src="imgCatalog" class="card-img-top" :alt="good.product_name">
-                            <div class="card-body">
-                                <h3 class="card-title">{{good.product_name}}</h3>
-                                <p class="card-text">{{good.price}}</p>
-                                <button class="btn btn-success" @click="addToCart(good.id_product)">Добавить в корзину</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
+                <basket-list :goods="basketGoods" @delete-item="deleteItem" :visibility="showCart"></basket-list>
+                <goods-list :goods="filteredGoods" @add-item="addToCart"></goods-list>
             </div>
         </main>
     </div>
+    
+    <script src="./js/CartComp.js"></script>
+    <script src="./js/GoodsList.js"></script>
+    <script src="./js/SearchComp.js"></script>
     <script src="./js/main.js"></script>
 </body>
 
