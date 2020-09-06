@@ -8,7 +8,7 @@ const app = new Vue({
         basketGoods: [],
         searchLine: '',
         imgCatalog: 'http://placehold.it/150x100/b0b0b0',
-        isVisibleCart: false,
+        showCart: false,
     },
     methods: {
           makeGETRequest(url) {
@@ -29,14 +29,6 @@ const app = new Vue({
             });
         },
         
-        goodsPrice() {
-            let cartPrice = 0;
-            this.basketGoods.forEach(good => {
-                cartPrice += good.price
-            });
-            return cartPrice;
-        },
-        
         addToCart(id_product) {
             let toCart;
             this.goods.forEach(function(item) {
@@ -50,7 +42,7 @@ const app = new Vue({
                 }
             });
             this.basketGoods.push(toCart);
-            this.goodsPrice();
+            this.goodsPrice;
         },
         
         deleteItem(id_product) {
@@ -63,7 +55,7 @@ const app = new Vue({
 
             });
             this.basketGoods.splice(getId, 1);
-            this.goodsPrice();
+            this.goodsPrice;
         },           
         
         filterGoods() {
@@ -72,6 +64,17 @@ const app = new Vue({
         }
         
     },
+    
+    computed: {
+        goodsPrice: function () {
+            let cartPrice = 0;
+            this.basketGoods.forEach(good => {
+                cartPrice += good.price
+            });
+            return cartPrice;
+        },    
+    },
+    
     mounted() {
         return fetch(`${API_URL}/catalogData.json`)
             .then(result => result.json())
@@ -83,3 +86,5 @@ const app = new Vue({
     
     }
 });
+
+
