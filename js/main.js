@@ -25,7 +25,29 @@ const app = new Vue({
                         }
                     }
                 }
+
                 xhr.send();
+            });
+        },
+
+        makePOSTRequest(url, data, callback) {
+            return new Promise((resolve, reject) => {
+                let xhr = new XMLHttpRequest();
+            
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status !== 200) {
+                            reject(console.log('error'));  
+                        }
+                        else {
+                            resolve(xhr.responseText);
+                        }
+                    }
+                }
+                xhr.open('POST', url, true);
+                xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+                xhr.send(data);
             });
         },
         
@@ -43,6 +65,7 @@ const app = new Vue({
             });
             this.basketGoods.push(toCart);
             this.goodsPrice;
+            this.makePOSTRequest('/addToCard', toCart);
         },
         
         deleteItem(id_product) {
@@ -56,6 +79,7 @@ const app = new Vue({
             });
             this.basketGoods.splice(getId, 1);
             this.goodsPrice;
+            this.makePOSTRequest('/updateCart', this.basketGoods);
         },           
         
         filterGoods() {
@@ -76,11 +100,13 @@ const app = new Vue({
     },
     
     mounted() {
-        return fetch(`${API_URL}/catalogData.json`)
+        return fetch(`/catalogData`)
             .then(result => result.json())
             .then(data => {
-                this.goods = [...data];
-                this.filteredGoods = [...data];
+                for(let el of data){
+                    this.goods.push(el);
+                    this.filteredGoods.push(el);
+                }
             })
             .catch(error => {console.log(error)});
     
