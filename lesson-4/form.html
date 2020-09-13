@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src='form.js'></script>
+</head>
+<body>
+<div class="container">
+  <form novalidate>
+      <div class="form-group" id="name-form">
+        <label for="exampleFormControlInput1">Имя</label>
+        <input type="text" class="form-control" id='name' placeholder="Иванов Иван Иванович">
+      </div>
+      <div class="form-group" id="phone-form">
+        <label for="exampleFormControlInput1">Номер телефона</label>
+        <input type="text" class="form-control" id='phone' placeholder="+7(000)000-0000">
+      </div>
+      <div class="form-group" id="email-form">
+        <label for="exampleFormControlInput1">Email-адрес</label>
+        <input type="email" class="form-control" id='email' placeholder="name@example.com">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Текст</label>
+        <textarea class="form-control" id="text" rows="3"></textarea>
+      </div>
+      <button type="button" class="btn btn-primary mb-2" onclick="valideForm()">Отправить</button>
+    </form>
+</div>
+
+</body>
+</html>

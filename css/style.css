@@ -1,0 +1,18 @@
+.card {
+    margin-top: 15px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.basket-item {
+    float: left;
+    padding: 5px;
+}
+
+.goods-list {
+    z-index: 3;
+    background-color: gray;
+    border: 1px solid black;
+}
