@@ -6,7 +6,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "moment": "^2.27.0",
-    "node-static": "^0.7.11"
+    "node-static": "^0.7.11",
+    "nodemon": "^2.0.4"
   },
   "devDependencies": {},
   "scripts": {

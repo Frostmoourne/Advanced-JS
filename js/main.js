@@ -65,7 +65,7 @@ const app = new Vue({
             });
             this.basketGoods.push(toCart);
             this.goodsPrice;
-            this.makePOSTRequest('/addToCard', toCart);
+            this.makePOSTRequest('/addToCard', JSON.stringify(toCart));
         },
         
         deleteItem(id_product) {
@@ -100,6 +100,7 @@ const app = new Vue({
     },
     
     mounted() {
+
         return fetch(`/catalogData`)
             .then(result => result.json())
             .then(data => {
